@@ -72,10 +72,16 @@
     }
   }
 
+  function sendOnUpdate(event) {
+    getData('iframe-storage-update', event.key);
+  }
+
   if (window.addEventListener) {
     window.addEventListener('message', receiveMessage, false);
+    window.addEventListener('storage', sendOnUpdate, false);
   } else {
     window.attachEvent('onmessage', receiveMessage);
+    window.attachEvent('storage', sendOnUpdate);
   }
 
   function sendOnLoad() {

@@ -8,7 +8,8 @@ window.xdLocalStorage = window.xdLocalStorage || (function () {
   var options = {
     iframeId: 'cross-domain-iframe',
     iframeUrl: undefined,
-    initCallback: function () {}
+    initCallback: function () {},
+    updateCallback: function () {}
   };
   var requestId = -1;
   var iframe;
@@ -34,6 +35,8 @@ window.xdLocalStorage = window.xdLocalStorage || (function () {
       if (data.id === 'iframe-ready') {
         iframeReady = true;
         options.initCallback();
+      } else if (data.id === 'iframe-storage-update') {
+        options.updateCallback(data);
       } else {
         applyCallback(data);
       }

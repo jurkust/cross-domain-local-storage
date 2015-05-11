@@ -67,6 +67,10 @@ bower install xdLocalStorage --save
             initCallback: function () {
                 console.log('Got iframe ready');
             }
+            //an option function to be called right after LocalStorage was updated on other tab/window
+            updateCallback: function (data) {
+                console.log('LocalStorage was updated, new data:', data);
+            }
         }
     );
 ```
